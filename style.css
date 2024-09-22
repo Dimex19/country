@@ -37,11 +37,16 @@ body {
 #countryDetails p {
     font-weight: 300;
 }
+#countryFlag {
+    height: 120px; 
+    width: 250px; 
+    border-radius: 5px 5px 0px 0px
+}
 .inputFilter {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 40px 40px 0px 40px;
+    margin: 40px 20px 0px 20px;
     position: relative;
 
 }
@@ -74,6 +79,7 @@ body {
     width:200px;
     height: 50px;
     border-radius: 5px;
+    /* border: 1px solid red; */
     display: flex;
     align-items: center;
     padding: 20px;
@@ -127,11 +133,24 @@ body {
     margin: 10px 20px;
     cursor: pointer;
 }
-@media (max-width: 375px) {
+@media (max-width: 600px) {
     .inputFilter {
         display: block;
+
     }
     .inputFilter input {
+        width: 380px;
         margin-bottom: 40px;
+        /* border: 1px solid red; */
+        /* margin: 40px 20px 0px 20px; */
+
+    }
+    .cards {
+        margin-right: auto;
+        margin-left: auto;
+        width: 300px;
+    }
+    #countryFlag {
+        width: 300px; 
     }
 }

@@ -22,7 +22,7 @@ document.getElementById("inputArea").addEventListener("keydown", function(event)
         card += `
           <div class="cards">
             <div id="flagDiv">
-                <img id="countryFlag" src="${item.flags.svg}" alt="" style="height: 120px; width: 250px; border-radius: 5px 5px 0px 0px">
+                <img id="countryFlag" src="${item.flags.svg}" alt="">
             </div>
             <div id="countryDetails">
                 <h3 id="country"><b>${item.name.common}</b></h3>
@@ -45,7 +45,7 @@ fetch("https://restcountries.com/v3.1/all").then((response) => response.json()).
     card += `
       <div class="cards">
         <div id="flagDiv">
-            <img id="countryFlag" src="${item.flags.svg}" alt="" style="height: 120px; width: 250px; border-radius: 5px 5px 0px 0px">
+            <img id="countryFlag" src="${item.flags.svg}" alt="">
         </div>
         <div id="countryDetails">
             <h3 id="country"><b>${item.name.common}</b></h3>
@@ -65,7 +65,7 @@ function africa () {
       card += `
         <div class="cards">
           <div id="flagDiv">
-              <img id="countryFlag" src="${item.flags.svg}" alt="" style="height: 120px; width: 250px; border-radius: 5px 5px 0px 0px">
+              <img id="countryFlag" src="${item.flags.svg}" alt="">
           </div>
           <div id="countryDetails">
               <h3 id="country"><b>${item.name.common}</b></h3>
@@ -88,7 +88,7 @@ function america () {
       card += `
         <div class="cards">
           <div id="flagDiv">
-              <img id="countryFlag" src="${item.flags.svg}" alt="" style="height: 120px; width: 250px; border-radius: 5px 5px 0px 0px">
+              <img id="countryFlag" src="${item.flags.svg}" alt="">
           </div>
           <div id="countryDetails">
               <h3 id="country"><b>${item.name.common}</b></h3>
@@ -110,7 +110,7 @@ function asia () {
       card += `
         <div class="cards">
           <div id="flagDiv">
-              <img id="countryFlag" src="${item.flags.svg}" alt="" style="height: 120px; width: 250px; border-radius: 5px 5px 0px 0px">
+              <img id="countryFlag" src="${item.flags.svg}" alt="">
           </div>
           <div id="countryDetails">
               <h3 id="country"><b>${item.name.common}</b></h3>
@@ -132,7 +132,7 @@ function europe () {
       card += `
         <div class="cards">
           <div id="flagDiv">
-              <img id="countryFlag" src="${item.flags.svg}" alt="" style="height: 120px; width: 250px; border-radius: 5px 5px 0px 0px">
+              <img id="countryFlag" src="${item.flags.svg}" alt="">
           </div>
           <div id="countryDetails">
               <h3 id="country"><b>${item.name.common}</b></h3>
@@ -154,7 +154,7 @@ function oceania () {
       card += `
         <div class="cards">
           <div id="flagDiv">
-              <img id="countryFlag" src="${item.flags.svg}" alt="" style="height: 120px; width: 250px; border-radius: 5px 5px 0px 0px">
+              <img id="countryFlag" src="${item.flags.svg}" alt="">
           </div>
           <div id="countryDetails">
               <h3 id="country"><b>${item.name.common}</b></h3>
