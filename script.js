@@ -9,6 +9,36 @@
 
 // const apiURL = "https://restcountries.com/v3.1/all"
 
+// https://restcountries.com/v3.1/name/deutschland
+
+document.getElementById("inputArea").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault(); // Prevent any default behavior, if necessary
+    console.log("Form submitted with value: " + this.value);
+    // You can call a function to handle the "submit" behavior here
+    fetch(`https://restcountries.com/v3.1/name/${this.value}`).then((response) => response.json()).then((data) => {
+      let card = ""
+      data.map((item) => {
+        card += `
+          <div class="cards">
+            <div id="flagDiv">
+                <img id="countryFlag" src="${item.flags.svg}" alt="" style="height: 120px; width: 250px; border-radius: 5px 5px 0px 0px">
+            </div>
+            <div id="countryDetails">
+                <h3 id="country"><b>${item.name.common}</b></h3>
+                <p id="population"><b>Population:</b> <span>${item.population}</span></p>
+                <p id="region"><b>Region:</b> <span>${item.region}</span></p>
+                <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
+            </div>
+        </div>`})
+      document.querySelector(".cardsContainer").innerHTML = card
+    }).catch((error) => console.log(error))
+  }
+
+});
+
+
+
 fetch("https://restcountries.com/v3.1/all").then((response) => response.json()).then((data) => {
   let card = ""
   data.map((item) => {
