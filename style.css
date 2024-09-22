@@ -15,7 +15,7 @@ body {
 .cards {
     /* margin: auto ; */
     width: 250px;
-    height: 300px;
+    height: 320px;
     margin: 30px;
     /* border: 1px solid red; */
     box-shadow: 1px 1px 1px 1px rgba(0.1, 0.1, 0.1, 0.1);
@@ -25,7 +25,7 @@ body {
     border-radius: 5px;
 }
 #flagDiv img {
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 #countryDetails {
     padding: 20px;
