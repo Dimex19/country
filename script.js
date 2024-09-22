@@ -218,9 +218,15 @@ function dropdown () {
 function darkMode () {
   document.querySelector("body").style.backgroundColor = "hsl(207, 26%, 17%)"
   document.querySelector("body").style.color = "white"
+
   document.querySelector(".mainHeader").style.backgroundColor = "hsl(209, 23%, 22%)"
-  document.querySelector("#filter").style.backgroundColor = "hsl(209, 23%, 22%)"
+
+  document.querySelector("#filterByRegion").style.backgroundColor = "hsl(209, 23%, 22%)"
+
+  document.querySelector("#filterByRegion").style.color = "white"
+
   document.querySelector(".inputFilter input").style.backgroundColor = "hsl(209, 23%, 22%)"
+
   console.log(document.querySelectorAll(".cards"))
   document.querySelectorAll(".cards").forEach(function(card) {
   card.style.backgroundColor = "hsl(209, 23%, 22%)"})
@@ -234,7 +240,7 @@ function darkMode () {
   /* .inputFilter input::placeholder {
     padding-left: 60px;
   } */
-  document.querySelector(".dropdown").style.backgroundColor = "hsl(209, 23%, 22%)"
-  console.log(document.querySelector(".dropdown"))
+  // document.querySelector(".dropdown").style.backgroundColor = "hsl(209, 23%, 22%)"
+  // console.log(document.querySelector(".dropdown"))
   
 }
