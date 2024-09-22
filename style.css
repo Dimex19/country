@@ -96,6 +96,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 20px 40px 20px 40px;
+    width: 100%;
     height: 60px;
     background-color: hsl(0, 0%, 100%);
     box-shadow: 1px 1px 1px 1px rgba(0.1, 0.1, 0.1, 0.1);
@@ -139,7 +140,7 @@ body {
 
     }
     .inputFilter input {
-        width: 380px;
+        width: 340px;
         margin-bottom: 40px;
         /* border: 1px solid red; */
         /* margin: 40px 20px 0px 20px; */
@@ -152,9 +153,8 @@ body {
     }
     #countryFlag {
         width: 300px;
-        /* border: 1px solid red;  */
+        border: 1px solid red; 
     }
-    #countryFlag img {
-        width: 300px;
-    }
+    
 }
+
