@@ -131,4 +131,7 @@ body {
     .inputFilter {
         display: block;
     }
+    .inputFilter input {
+        margin-bottom: 40px;
+    }
 }
