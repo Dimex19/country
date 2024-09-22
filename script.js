@@ -11,8 +11,9 @@
 
 // https://restcountries.com/v3.1/name/deutschland
 
-document.getElementById("inputArea").addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
+document.getElementById("inputArea").addEventListener("keyup", function(event) {
+  console.log(this.value)
+  if (this.value.length > 3)  {
     event.preventDefault(); // Prevent any default behavior, if necessary
     console.log("Form submitted with value: " + this.value);
     // You can call a function to handle the "submit" behavior here
@@ -34,154 +35,186 @@ document.getElementById("inputArea").addEventListener("keydown", function(event)
       document.querySelector(".cardsContainer").innerHTML = card
     }).catch((error) => console.log(error))
   }
+  else if (this.value.length === 0){
+    allCountries()
+  } 
 
 });
 
 
 
-fetch("https://restcountries.com/v3.1/all").then((response) => response.json()).then((data) => {
-  let card = ""
-  data.map((item) => {
-    card += `
-      <div class="cards">
-        <div id="flagDiv">
-            <img id="countryFlag" src="${item.flags.svg}" alt="">
-        </div>
-        <div id="countryDetails">
-            <h3 id="country"><b>${item.name.common}</b></h3>
-            <p id="population"><b>Population:</b> <span>${item.population}</span></p>
-            <p id="region"><b>Region:</b> <span>${item.region}</span></p>
-            <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
-        </div>
-    </div>`})
-  document.querySelector(".cardsContainer").innerHTML = card
-}).catch((error) => console.log(error))
+function allCountries () {
+  fetch("https://restcountries.com/v3.1/all").then((response) => response.json()).then((data) => {
+    let card = ""
+    data.map((item) => {
+      card += `
+        <div class="cards">
+          <div id="flagDiv">
+              <img id="countryFlag" src="${item.flags.svg}" alt="">
+          </div>
+          <div id="countryDetails">
+              <h3 id="country"><b>${item.name.common}</b></h3>
+              <p id="population"><b>Population:</b> <span>${item.population}</span></p>
+              <p id="region"><b>Region:</b> <span>${item.region}</span></p>
+              <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
+          </div>
+      </div>`})
+    document.querySelector(".cardsContainer").innerHTML = card
+  }).catch((error) => console.log(error))
+}
+window.onload=allCountries()
 
+document.querySelector("#filterByRegion").addEventListener("change", function (event) {
+  console.log(this.value)
+  fetch(`https://restcountries.com/v3.1/region/${this.value}`).then((response) => response.json()).then((data) => {
+    let card = ""
+    data.map((item) => {
+      card += `
+        <div class="cards">
+          <div id="flagDiv">
+              <img id="countryFlag" src="${item.flags.svg}" alt="">
+          </div>
+          <div id="countryDetails">
+              <h3 id="country"><b>${item.name.common}</b></h3>
+              <p id="population"><b>Population:</b> <span>${item.population}</span></p>
+              <p id="region"><b>Region:</b> <span>${item.region}</span></p>
+              <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
+          </div>
+      </div>`})
+    document.querySelector(".cardsContainer").innerHTML = card
+  }).catch((error) => console.log(error))
 
-function africa () {
-  fetch("https://restcountries.com/v3.1/region/africa").then((response) => response.json()).then((data) => {
-    let card = ""
-    data.map((item) => {
-      card += `
-        <div class="cards">
-          <div id="flagDiv">
-              <img id="countryFlag" src="${item.flags.svg}" alt="">
-          </div>
-          <div id="countryDetails">
-              <h3 id="country"><b>${item.name.common}</b></h3>
-              <p id="population"><b>Population:</b> <span>${item.name.common}</span></p>
-              <p id="region"><b>Region:</b> <span>${item.region}</span></p>
-              <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
-          </div>
-      </div>`})
-    document.querySelector(".cardsContainer").innerHTML = card
-  }).catch((error) => console.log(error))
-  document.querySelector("#filter").innerHTML = `
-            <p>Filter by region</p>
-            <img src="./down-chevron_9144316-removebg-preview.png" alt="" onclick="dropdown()">`
-}
+});
 
-function america () {
-  fetch("https://restcountries.com/v3.1/region/america").then((response) => response.json()).then((data) => {
-    let card = ""
-    data.map((item) => {
-      card += `
-        <div class="cards">
-          <div id="flagDiv">
-              <img id="countryFlag" src="${item.flags.svg}" alt="">
-          </div>
-          <div id="countryDetails">
-              <h3 id="country"><b>${item.name.common}</b></h3>
-              <p id="population"><b>Population:</b> <span>${item.name.common}</span></p>
-              <p id="region"><b>Region:</b> <span>${item.region}</span></p>
-              <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
-          </div>
-        </div>`})
-    document.querySelector(".cardsContainer").innerHTML = card
-  }).catch((error) => console.log(error))
-  document.querySelector("#filter").innerHTML = `
-            <p>Filter by region</p>
-            <img src="./down-chevron_9144316-removebg-preview.png" alt="" onclick="dropdown()">`
-}
-function asia () {
-  fetch("https://restcountries.com/v3.1/region/asia").then((response) => response.json()).then((data) => {
-    let card = ""
-    data.map((item) => {
-      card += `
-        <div class="cards">
-          <div id="flagDiv">
-              <img id="countryFlag" src="${item.flags.svg}" alt="">
-          </div>
-          <div id="countryDetails">
-              <h3 id="country"><b>${item.name.common}</b></h3>
-              <p id="population"><b>Population:</b> <span>${item.name.common}</span></p>
-              <p id="region"><b>Region:</b> <span>${item.region}</span></p>
-              <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
-          </div>
-      </div>`})
-    document.querySelector(".cardsContainer").innerHTML = card
-  }).catch((error) => console.log(error))
-  document.querySelector("#filter").innerHTML = `
-            <p>Filter by region</p>
-            <img src="./down-chevron_9144316-removebg-preview.png" alt="" onclick="dropdown()">`
-}
-function europe () {
-  fetch("https://restcountries.com/v3.1/region/europe").then((response) => response.json()).then((data) => {
-    let card = ""
-    data.map((item) => {
-      card += `
-        <div class="cards">
-          <div id="flagDiv">
-              <img id="countryFlag" src="${item.flags.svg}" alt="">
-          </div>
-          <div id="countryDetails">
-              <h3 id="country"><b>${item.name.common}</b></h3>
-              <p id="population"><b>Population:</b> <span>${item.name.common}</span></p>
-              <p id="region"><b>Region:</b> <span>${item.region}</span></p>
-              <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
-          </div>
-      </div>`})
-    document.querySelector(".cardsContainer").innerHTML = card
-  }).catch((error) => console.log(error))
-  document.querySelector("#filter").innerHTML = `
-            <p>Filter by region</p>
-            <img src="./down-chevron_9144316-removebg-preview.png" alt="" onclick="dropdown()">`
-}
-function oceania () {
-  fetch("https://restcountries.com/v3.1/region/oceania").then((response) => response.json()).then((data) => {
-    let card = ""
-    data.map((item) => {
-      card += `
-        <div class="cards">
-          <div id="flagDiv">
-              <img id="countryFlag" src="${item.flags.svg}" alt="">
-          </div>
-          <div id="countryDetails">
-              <h3 id="country"><b>${item.name.common}</b></h3>
-              <p id="population"><b>Population:</b> <span>${item.name.common}</span></p>
-              <p id="region"><b>Region:</b> <span>${item.region}</span></p>
-              <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
-          </div>
-      </div>`})
-    document.querySelector(".cardsContainer").innerHTML = card
-  }).catch((error) => console.log(error))
-  document.querySelector("#filter").innerHTML = `
-            <p>Filter by region</p>
-            <img src="./down-chevron_9144316-removebg-preview.png" alt="" onclick="dropdown()">`
-}
 
 function dropdown () {
-    document.querySelector("#filter").innerHTML = `
-            <p>Filter by region</p>
-            <img src="./down-chevron_9144316-removebg-preview.png" alt="" onclick="dropdown()">
-            <div class="dropdown">
-                <p onclick="africa()">Africa</p>
-                <p onclick="america()">America</p>
-                <p onclick="asia()">Asia</p>
-                <p onclick="europe()">Europe</p>
-                <p onclick="oceania()">Oceania</p>
-            </div>`
+  const region = `https://restcountries.com/v3.1/region/${region}`
 }
+
+// function africa () {
+//   fetch("https://restcountries.com/v3.1/region/africa").then((response) => response.json()).then((data) => {
+//     let card = ""
+//     data.map((item) => {
+//       card += `
+//         <div class="cards">
+//           <div id="flagDiv">
+//               <img id="countryFlag" src="${item.flags.svg}" alt="">
+//           </div>
+//           <div id="countryDetails">
+//               <h3 id="country"><b>${item.name.common}</b></h3>
+//               <p id="population"><b>Population:</b> <span>${item.name.common}</span></p>
+//               <p id="region"><b>Region:</b> <span>${item.region}</span></p>
+//               <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
+//           </div>
+//       </div>`})
+//     document.querySelector(".cardsContainer").innerHTML = card
+//   }).catch((error) => console.log(error))
+//   document.querySelector("#filter").innerHTML = `
+//             <p>Filter by region</p>
+//             <img src="./down-chevron_9144316-removebg-preview.png" alt="" onclick="dropdown()">`
+// }
+
+// function america () {
+//   fetch("https://restcountries.com/v3.1/region/america").then((response) => response.json()).then((data) => {
+//     let card = ""
+//     data.map((item) => {
+//       card += `
+//         <div class="cards">
+//           <div id="flagDiv">
+//               <img id="countryFlag" src="${item.flags.svg}" alt="">
+//           </div>
+//           <div id="countryDetails">
+//               <h3 id="country"><b>${item.name.common}</b></h3>
+//               <p id="population"><b>Population:</b> <span>${item.name.common}</span></p>
+//               <p id="region"><b>Region:</b> <span>${item.region}</span></p>
+//               <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
+//           </div>
+//         </div>`})
+//     document.querySelector(".cardsContainer").innerHTML = card
+//   }).catch((error) => console.log(error))
+//   document.querySelector("#filter").innerHTML = `
+//             <p>Filter by region</p>
+//             <img src="./down-chevron_9144316-removebg-preview.png" alt="" onclick="dropdown()">`
+// }
+// function asia () {
+//   fetch("https://restcountries.com/v3.1/region/asia").then((response) => response.json()).then((data) => {
+//     let card = ""
+//     data.map((item) => {
+//       card += `
+//         <div class="cards">
+//           <div id="flagDiv">
+//               <img id="countryFlag" src="${item.flags.svg}" alt="">
+//           </div>
+//           <div id="countryDetails">
+//               <h3 id="country"><b>${item.name.common}</b></h3>
+//               <p id="population"><b>Population:</b> <span>${item.name.common}</span></p>
+//               <p id="region"><b>Region:</b> <span>${item.region}</span></p>
+//               <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
+//           </div>
+//       </div>`})
+//     document.querySelector(".cardsContainer").innerHTML = card
+//   }).catch((error) => console.log(error))
+//   document.querySelector("#filter").innerHTML = `
+//             <p>Filter by region</p>
+//             <img src="./down-chevron_9144316-removebg-preview.png" alt="" onclick="dropdown()">`
+// }
+// function europe () {
+//   fetch("https://restcountries.com/v3.1/region/europe").then((response) => response.json()).then((data) => {
+//     let card = ""
+//     data.map((item) => {
+//       card += `
+//         <div class="cards">
+//           <div id="flagDiv">
+//               <img id="countryFlag" src="${item.flags.svg}" alt="">
+//           </div>
+//           <div id="countryDetails">
+//               <h3 id="country"><b>${item.name.common}</b></h3>
+//               <p id="population"><b>Population:</b> <span>${item.name.common}</span></p>
+//               <p id="region"><b>Region:</b> <span>${item.region}</span></p>
+//               <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
+//           </div>
+//       </div>`})
+//     document.querySelector(".cardsContainer").innerHTML = card
+//   }).catch((error) => console.log(error))
+//   document.querySelector("#filter").innerHTML = `
+//             <p>Filter by region</p>
+//             <img src="./down-chevron_9144316-removebg-preview.png" alt="" onclick="dropdown()">`
+// }
+// function oceania () {
+//   fetch("https://restcountries.com/v3.1/region/oceania").then((response) => response.json()).then((data) => {
+//     let card = ""
+//     data.map((item) => {
+//       card += `
+//         <div class="cards">
+//           <div id="flagDiv">
+//               <img id="countryFlag" src="${item.flags.svg}" alt="">
+//           </div>
+//           <div id="countryDetails">
+//               <h3 id="country"><b>${item.name.common}</b></h3>
+//               <p id="population"><b>Population:</b> <span>${item.name.common}</span></p>
+//               <p id="region"><b>Region:</b> <span>${item.region}</span></p>
+//               <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
+//           </div>
+//       </div>`})
+//     document.querySelector(".cardsContainer").innerHTML = card
+//   }).catch((error) => console.log(error))
+//   document.querySelector("#filter").innerHTML = `
+//             <p>Filter by region</p>
+//             <img src="./down-chevron_9144316-removebg-preview.png" alt="" onclick="dropdown()">`
+// }
+
+// function dropdown () {
+//     document.querySelector("#filter").innerHTML = `
+//             <p>Filter by region</p>
+//             <img src="./down-chevron_9144316-removebg-preview.png" alt="" onclick="dropdown()">
+//             <div class="dropdown" style="visibility:visible">
+//                 <p onclick="africa()">Africa</p>
+//                 <p onclick="america()">America</p>
+//                 <p onclick="asia()">Asia</p>
+//                 <p onclick="europe()">Europe</p>
+//                 <p onclick="oceania()">Oceania</p>
+//             </div>`
+// }
 function darkMode () {
   document.querySelector("body").style.backgroundColor = "hsl(207, 26%, 17%)"
   document.querySelector("body").style.color = "white"
@@ -200,5 +233,8 @@ function darkMode () {
   document.querySelector(".inputFilter input").style.color="white"
   /* .inputFilter input::placeholder {
     padding-left: 60px;
-} */
+  } */
+  document.querySelector(".dropdown").style.backgroundColor = "hsl(209, 23%, 22%)"
+  console.log(document.querySelector(".dropdown"))
+  
 }
