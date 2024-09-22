@@ -24,9 +24,9 @@ body {
     cursor: pointer;
     border-radius: 5px;
 }
-#flagDiv img {
-    /* border: 1px solid red; */
-}
+/* #flagDiv img {
+    border: 1px solid red;
+} */
 #countryDetails {
     padding: 20px;
 }
