@@ -152,8 +152,8 @@ body {
         width: 300px;
     }
     #countryFlag {
-        width: 450px;
-        border: 1px solid red; 
+        width: 300px;
+        /* border: 1px solid red;  */
     }
     
 }
