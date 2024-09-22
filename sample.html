@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .container {
+      margin: 0 auto;
+      width: 70%;
+      background: white;
+      box-shadow: 3px 2px 5px 1px rgba(0, 0, 0, 0.2);
+      padding: 5px;
+    }
+
+    .where__wordld {
+      display: flex;
+      justify-content: space-between;
+      background: white;
+      height: 60px;
+      align-items: center;
+      padding: 5px;
+    }
+  </style>
+  <body>
+    <h1>COUNTRY API</h1>
+    <div class="container">
+      <div class="where__wordld">
+        <p>Where in the world</p>
+        <div class="mode">
+          <i class="fa fa-sun-o" aria-hidden="true"></i>
+          Dark Mode
+        </div>
+      </div>
+      <div class="card">
+        <img src="" alt="" width="300px" />
+        <h1 class="country">Germany</h1>
+        <p class="population">Population : <span></span></p>
+        <p class="region">Region : <span></span></p>
+        <p class="capital">Capital : <span></span></p>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    const apiUrl = "https://restcountries.com/v3.1/all";
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        const country = document.querySelector(".country");
+        const card = document.querySelector(".card");
+        const flag = document.querySelector(".card img");
+        const population = document.querySelector(".population span");
+        const region = document.querySelector(".region span");
+        const capital = document.querySelector(".capital span");
+
+        console.log(data);
+
+        // //ES2016
+        // data.forEach((item) => {
+        //   flag.src = item.flags.png;
+        //   country.innerHTML = item.name.common;
+        //   population.innerHTML = item.population;
+        //   region.innerHTML = item.region;
+        //   capital.innerHTML = item.capital[0];
+        // });
+
+        // data.map((item) => {
+        //   flag.src = item.flags.svg;
+        //   population.innerHTML = item.population;
+        // });
+      })
+      .catch((err) => console.error(err));
+
+    setTimeout(() => {
+      console.log("hello");
+    }, 3000);
+
+    console.log("welcome");
+  </script>
+</html>
