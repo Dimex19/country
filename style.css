@@ -127,3 +127,8 @@ body {
     margin: 10px 20px;
     cursor: pointer;
 }
+@media (max-width: 375px) {
+    .inputFilter {
+        display: block;
+    }
+}
