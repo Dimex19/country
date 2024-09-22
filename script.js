@@ -96,7 +96,7 @@ function america () {
               <p id="region"><b>Region:</b> <span>${item.region}</span></p>
               <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
           </div>
-      </div>`})
+        </div>`})
     document.querySelector(".cardsContainer").innerHTML = card
   }).catch((error) => console.log(error))
   document.querySelector("#filter").innerHTML = `
@@ -181,4 +181,24 @@ function dropdown () {
                 <p onclick="europe()">Europe</p>
                 <p onclick="oceania()">Oceania</p>
             </div>`
+}
+function darkMode () {
+  document.querySelector("body").style.backgroundColor = "hsl(207, 26%, 17%)"
+  document.querySelector("body").style.color = "white"
+  document.querySelector(".mainHeader").style.backgroundColor = "hsl(209, 23%, 22%)"
+  document.querySelector("#filter").style.backgroundColor = "hsl(209, 23%, 22%)"
+  document.querySelector(".inputFilter input").style.backgroundColor = "hsl(209, 23%, 22%)"
+  console.log(document.querySelectorAll(".cards"))
+  document.querySelectorAll(".cards").forEach(function(card) {
+  card.style.backgroundColor = "hsl(209, 23%, 22%)"})
+  // document.querySelectorAll
+  // document.querySelector(".inputFilter input::placeholder").style.color = "white"
+  let inputElement = document.querySelector(".inputFilter input");
+// Add a dynamic style to the placeholder using CSS
+  inputElement.style.setProperty("--placeholder-color", "white");
+  inputElement.style.color = "white";  // Change text color
+  document.querySelector(".inputFilter input").style.color="white"
+  /* .inputFilter input::placeholder {
+    padding-left: 60px;
+} */
 }

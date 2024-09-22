@@ -61,6 +61,11 @@ body {
 }
 /* .inputFilter input::placeholder {
     padding-left: 60px;
+    color: white;
+} */
+/* .inputFilter input::-ms-value {
+    padding-left: 60px;
+    color: white;
 } */
 .inputFilter input textarea {
     padding-left: 60px;
@@ -110,6 +115,7 @@ body {
 }
 #right {
     display: flex;
+    cursor: pointer;
     /* border: 1px solid red; */
     /* width: 120px; */
 }
