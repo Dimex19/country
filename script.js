@@ -19,7 +19,7 @@ fetch("https://restcountries.com/v3.1/all").then((response) => response.json()).
         </div>
         <div id="countryDetails">
             <h3 id="country"><b>${item.name.common}</b></h3>
-            <p id="population"><b>Population:</b> <span>${item.name.common}</span></p>
+            <p id="population"><b>Population:</b> <span>${item.population}</span></p>
             <p id="region"><b>Region:</b> <span>${item.region}</span></p>
             <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
         </div>
