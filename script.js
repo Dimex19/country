@@ -64,31 +64,136 @@ function allCountries () {
 }
 window.onload=allCountries()
 
-document.querySelector("#filterByRegion").addEventListener("change", function (event) {
-  console.log(this.value)
-  fetch(`https://restcountries.com/v3.1/region/${this.value}`).then((response) => response.json()).then((data) => {
-    let card = ""
-    data.map((item) => {
-      card += `
-        <div class="cards">
-          <div id="flagDiv">
-              <img id="countryFlag" src="${item.flags.svg}" alt="">
-          </div>
-          <div id="countryDetails">
-              <h3 id="country"><b>${item.name.common}</b></h3>
-              <p id="population"><b>Population:</b> <span>${item.population}</span></p>
-              <p id="region"><b>Region:</b> <span>${item.region}</span></p>
-              <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
-          </div>
-      </div>`})
-    document.querySelector(".cardsContainer").innerHTML = card
-  }).catch((error) => console.log(error))
-
-});
+function filterByRegion () {
+  document.querySelector("#filterByRegion").addEventListener("change", function (event) {
+    console.log(this.value)
+    fetch(`https://restcountries.com/v3.1/region/${this.value}`).then((response) => response.json()).then((data) => {
+      let card = ""
+      data.map((item) => {
+        card += `
+          <div class="cards">
+            <div id="flagDiv">
+                <img id="countryFlag" src="${item.flags.svg}" alt="">
+            </div>
+            <div id="countryDetails">
+                <h3 id="country"><b>${item.name.common}</b></h3>
+                <p id="population"><b>Population:</b> <span>${item.population}</span></p>
+                <p id="region"><b>Region:</b> <span>${item.region}</span></p>
+                <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
+            </div>
+        </div>`})
+      document.querySelector(".cardsContainer").innerHTML = card
+    }).catch((error) => console.log(error))
+  });
+}
+filterByRegion()
+  
 
 
 function dropdown () {
   const region = `https://restcountries.com/v3.1/region/${region}`
+}
+
+function darkMode () {
+  document.querySelector("body").style.backgroundColor = "hsl(207, 26%, 17%)"
+  document.querySelector("body").style.color = "white"
+
+  document.querySelector(".mainHeader").style.backgroundColor = "hsl(209, 23%, 22%)"
+
+  document.querySelector("#filterByRegion").style.backgroundColor = "hsl(209, 23%, 22%)"
+
+  document.querySelector("#filterByRegion").style.color = "white"
+
+  document.querySelector(".inputFilter input").style.backgroundColor = "hsl(209, 23%, 22%)"
+
+  console.log(document.querySelectorAll(".cards"))
+  document.querySelectorAll(".cards").forEach(function(card) {
+  card.style.backgroundColor = "hsl(209, 23%, 22%)"})
+  // document.querySelectorAll
+  // document.querySelector(".inputFilter input::placeholder").style.color = "white"
+  let inputElement = document.querySelector(".inputFilter input");
+// Add a dynamic style to the placeholder using CSS
+  inputElement.style.setProperty("--placeholder-color", "white");
+  inputElement.style.color = "white";  // Change text color
+  document.querySelector(".inputFilter input").style.color="white"
+  /* .inputFilter input::placeholder {
+    padding-left: 60px;
+  } */
+  // document.querySelector(".dropdown").style.backgroundColor = "hsl(209, 23%, 22%)"
+  // console.log(document.querySelector(".dropdown"))
+  
+  function filterByRegion () {
+    document.querySelector("#filterByRegion").addEventListener("change", function (event) {
+      console.log(this.value)
+      fetch(`https://restcountries.com/v3.1/region/${this.value}`).then((response) => response.json()).then((data) => {
+        let card = ""
+        data.map((item) => {
+          card += `
+            <div class="cards" style="background-color: hsl(209, 23%, 22%)">
+              <div id="flagDiv">
+                  <img id="countryFlag" src="${item.flags.svg}" alt="">
+              </div>
+              <div id="countryDetails">
+                  <h3 id="country"><b>${item.name.common}</b></h3>
+                  <p id="population"><b>Population:</b> <span>${item.population}</span></p>
+                  <p id="region"><b>Region:</b> <span>${item.region}</span></p>
+                  <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
+              </div>
+          </div>`})
+        document.querySelector(".cardsContainer").innerHTML = card
+      }).catch((error) => console.log(error))
+    });
+  }
+  filterByRegion()
+
+  document.getElementById("inputArea").addEventListener("keyup", function(event) {
+    console.log(this.value)
+    if (this.value.length > 3)  {
+      event.preventDefault(); // Prevent any default behavior, if necessary
+      console.log("Form submitted with value: " + this.value);
+      // You can call a function to handle the "submit" behavior here
+      fetch(`https://restcountries.com/v3.1/name/${this.value}`).then((response) => response.json()).then((data) => {
+        let card = ""
+        data.map((item) => {
+          card += `
+            <div class="cards" style="background-color: hsl(209, 23%, 22%)">
+              <div id="flagDiv">
+                  <img id="countryFlag" src="${item.flags.svg}" alt="">
+              </div>
+              <div id="countryDetails">
+                  <h3 id="country"><b>${item.name.common}</b></h3>
+                  <p id="population"><b>Population:</b> <span>${item.population}</span></p>
+                  <p id="region"><b>Region:</b> <span>${item.region}</span></p>
+                  <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
+              </div>
+          </div>`})
+        document.querySelector(".cardsContainer").innerHTML = card
+      }).catch((error) => console.log(error))
+    }
+    else if (this.value.length === 0){
+      function allCountries () {
+        fetch("https://restcountries.com/v3.1/all").then((response) => response.json()).then((data) => {
+          let card = ""
+          data.map((item) => {
+            card += `
+              <div class="cards" style="background-color: hsl(209, 23%, 22%)">
+                <div id="flagDiv">
+                    <img id="countryFlag" src="${item.flags.svg}" alt="">
+                </div>
+                <div id="countryDetails">
+                    <h3 id="country"><b>${item.name.common}</b></h3>
+                    <p id="population"><b>Population:</b> <span>${item.population}</span></p>
+                    <p id="region"><b>Region:</b> <span>${item.region}</span></p>
+                    <p id="capital"><b>Capital:</b> <span>${item.capital}</span></p>
+                </div>
+            </div>`})
+          document.querySelector(".cardsContainer").innerHTML = card
+        }).catch((error) => console.log(error))
+      }
+      allCountries()
+    } 
+  
+  });
 }
 
 // function africa () {
@@ -215,32 +320,3 @@ function dropdown () {
 //                 <p onclick="oceania()">Oceania</p>
 //             </div>`
 // }
-function darkMode () {
-  document.querySelector("body").style.backgroundColor = "hsl(207, 26%, 17%)"
-  document.querySelector("body").style.color = "white"
-
-  document.querySelector(".mainHeader").style.backgroundColor = "hsl(209, 23%, 22%)"
-
-  document.querySelector("#filterByRegion").style.backgroundColor = "hsl(209, 23%, 22%)"
-
-  document.querySelector("#filterByRegion").style.color = "white"
-
-  document.querySelector(".inputFilter input").style.backgroundColor = "hsl(209, 23%, 22%)"
-
-  console.log(document.querySelectorAll(".cards"))
-  document.querySelectorAll(".cards").forEach(function(card) {
-  card.style.backgroundColor = "hsl(209, 23%, 22%)"})
-  // document.querySelectorAll
-  // document.querySelector(".inputFilter input::placeholder").style.color = "white"
-  let inputElement = document.querySelector(".inputFilter input");
-// Add a dynamic style to the placeholder using CSS
-  inputElement.style.setProperty("--placeholder-color", "white");
-  inputElement.style.color = "white";  // Change text color
-  document.querySelector(".inputFilter input").style.color="white"
-  /* .inputFilter input::placeholder {
-    padding-left: 60px;
-  } */
-  // document.querySelector(".dropdown").style.backgroundColor = "hsl(209, 23%, 22%)"
-  // console.log(document.querySelector(".dropdown"))
-  
-}
